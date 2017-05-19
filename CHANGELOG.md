@@ -1,3 +1,10 @@
+# 0.7.1 - 2017-05-19
+
+## Bug Fixes
+
+- Correctly pass the `generateSourceMap` option down to the underlying parser.
+  Source maps will be generated with both drafter.js and Protagonist.
+
 # 0.7.0 - 2017-03-30
 
 - Upgraded babel-runtime dependency to v6
