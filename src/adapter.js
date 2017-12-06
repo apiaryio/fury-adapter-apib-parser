@@ -1,7 +1,7 @@
 // API Blueprint parser for Fury.js
 
 import deckardcain from 'deckardcain';
-import drafter from 'drafter';
+import drafter from 'drafter.js';
 import JSON06Serialiser from 'minim/lib/serialisers/json-0.6';
 
 export const name = 'api-blueprint';
