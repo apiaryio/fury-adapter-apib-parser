@@ -2,7 +2,6 @@
 
 import deckardcain from 'deckardcain';
 import drafter from 'drafter';
-import JSON06Serialiser from 'minim/lib/serialisers/json-0.6';
 
 export const name = 'api-blueprint';
 export const mediaTypes = [
@@ -19,15 +18,7 @@ export function validate({ minim, source, requireBlueprintName }, done) {
     requireBlueprintName,
   };
 
-  const serialiser = new JSON06Serialiser(minim);
-
-  drafter.validate(source, options, (err, parseResult) => {
-    if (parseResult) {
-      done(err, serialiser.deserialise(parseResult));
-    } else {
-      done(err, parseResult);
-    }
-  });
+  drafter.validate(source, options, done);
 }
 
 /*
@@ -39,15 +30,7 @@ export function parse({ minim, source, generateSourceMap, requireBlueprintName }
     requireBlueprintName,
   };
 
-  const serialiser = new JSON06Serialiser(minim);
-
-  drafter.parse(source, options, (err, parseResult) => {
-    if (parseResult) {
-      done(err, serialiser.deserialise(parseResult));
-    } else {
-      done(err, parseResult);
-    }
-  });
+  drafter.parse(source, options, done);
 }
 
 export default { name, mediaTypes, detect, validate, parse };

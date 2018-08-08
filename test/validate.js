@@ -1,15 +1,16 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
-import { Namespace } from 'minim';
-import { validate } from '../src/adapter';
+import { Fury } from 'fury';
+import adapter from '../src/adapter';
 
-const minim = new Namespace();
+const fury = new Fury();
+fury.use(adapter);
 
 describe('API Blueprint validation', () => {
   it('can validate an API Blueprint', (done) => {
     const source = '# API Name\n';
 
-    validate({ source }, (err, parseResult) => {
+    fury.validate({ source, mediaType: 'text/vnd.apiblueprint' }, (err, parseResult) => {
       expect(err).to.be.null;
       expect(parseResult).to.be.null;
 
@@ -20,9 +21,9 @@ describe('API Blueprint validation', () => {
   it('can validate an API Blueprint with a warning', (done) => {
     const source = '# GET /\n';
 
-    validate({ source }, (err, parseResult) => {
+    fury.validate({ source, mediaType: 'text/vnd.apiblueprint' }, (err, parseResult) => {
       expect(err).to.be.null;
-      expect(minim.toRefract(parseResult)).to.deep.equal({
+      expect(fury.minim.serialiser.serialise(parseResult)).to.deep.equal({
         element: 'parseResult',
         content: [
           {
@@ -79,9 +80,9 @@ describe('API Blueprint validation', () => {
   it('can validate an API Blueprint with an error', (done) => {
     const source = '# Data Structures\n# A (A)\n';
 
-    validate({ source }, (err, parseResult) => {
+    fury.validate({ source, mediaType: 'text/vnd.apiblueprint' }, (err, parseResult) => {
       expect(err).to.be.null;
-      expect(minim.toRefract(parseResult)).to.deep.equal({
+      expect(fury.minim.serialiser.serialise(parseResult)).to.deep.equal({
         element: 'parseResult',
         content: [
           {

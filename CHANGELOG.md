@@ -1,5 +1,11 @@
 # Fury API Blueprint Parser Changelog
 
+## Master
+
+This update now uses drafter-npm 2.0.0-pre.0. Please see [drafter-npm
+2.0.0-pre.0](https://github.com/apiaryio/drafter/releases/tag/v2.0.0-pre.0) for
+the list of changes.
+
 ## 0.11.0
 
 ### Enhancements
