@@ -2,8 +2,8 @@
 
 ## Master
 
-This update now uses drafter-npm 2.0.0-pre.0. Please see [drafter-npm
-2.0.0-pre.0](https://github.com/apiaryio/drafter/releases/tag/v2.0.0-pre.0) for
+This update now uses drafter-npm 2.0.0-pre.1. Please see [drafter-npm
+2.0.0-pre.1](https://github.com/apiaryio/drafter/releases/tag/v2.0.0-pre.1) for
 the list of changes.
 
 ## 0.11.0

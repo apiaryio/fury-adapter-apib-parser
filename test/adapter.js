@@ -5,7 +5,7 @@
 
 import { Fury } from 'fury';
 import { expect } from 'chai';
-import adapter from '../src/adapter';
+import adapter, { detect } from '../src/adapter';
 
 const fury = new Fury();
 fury.use(adapter);
@@ -13,15 +13,15 @@ fury.use(adapter);
 describe('API Blueprint parser adapter', () => {
   context('detection', () => {
     it('detects FORMAT: 1A', () => {
-      expect(adapter.detect('FORMAT: 1A\n# My API')).to.be.true;
+      expect(detect('FORMAT: 1A\n# My API')).to.be.true;
     });
 
     it('works with unicode BOM', () => {
-      expect(adapter.detect('\uFEFFFORMAT: 1A\n')).to.be.true;
+      expect(detect('\uFEFFFORMAT: 1A\n')).to.be.true;
     });
 
     it('ignores other data', () => {
-      expect(adapter.detect('{"title": "Not APIB!"}')).to.be.false;
+      expect(detect('{"title": "Not APIB!"}')).to.be.false;
     });
   });
 
@@ -56,7 +56,7 @@ describe('API Blueprint parser adapter', () => {
     const source = '# GET /\n+ Response 204\n';
 
     fury.parse({ source, adapterOptions: { requireBlueprintName: true } }, (err, parseResult) => {
-      expect(err).not.to.be.null;
+      expect(err).to.be.null;
       expect(parseResult.errors.length).to.equal(1);
       done();
     });
