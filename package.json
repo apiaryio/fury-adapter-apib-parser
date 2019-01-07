@@ -18,7 +18,7 @@
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "deckardcain": "^0.4.0",
-    "drafter": "^1.2.0",
+    "drafter.js": "^2.6.7",
     "minim": "^0.21.1"
   },
   "peerDependencies": {

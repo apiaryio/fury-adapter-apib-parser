@@ -21,7 +21,27 @@ npm install fury-adapter-apib-parser
 import fury from 'fury';
 import apibParser from 'fury-adapter-apib-parser';
 
-fury.use(apibParser);
+fury.use(apibParser());
+
+fury.parse({source: '... your API Blueprint ...'}, (err, result) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  // The returned `result` is a Minim parse result element.
+  console.log(result.api.title);
+});
+```
+
+For better performance, a C++ version of the Blueprint parser can be used.
+
+```js
+import fury from 'fury';
+import apibParser from 'fury-adapter-apib-parser';
+import drafter from 'drafter';
+
+fury.use(apibParser(drafter));
 
 fury.parse({source: '... your API Blueprint ...'}, (err, result) => {
   if (err) {
