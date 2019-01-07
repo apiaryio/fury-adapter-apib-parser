@@ -4,7 +4,9 @@
  */
 
 import { expect } from 'chai';
-import { parse, detect } from '../src/adapter';
+import adapter from '../src/adapter';
+
+const { parse, detect } = adapter();
 
 describe('API Blueprint parser adapter', () => {
   context('detection', () => {
@@ -56,5 +58,18 @@ describe('API Blueprint parser adapter', () => {
       expect(output.content[0].element).to.equal('annotation');
       done();
     });
+  });
+
+  it('works with protagonist', (done) => {
+    const source = '# GET /\n+ Response 204\n';
+
+    const fakeParse = adapter({ parse(a, b, c) {
+      expect(a).to.equal(source);
+      expect(b).to.deep.equal({ exportSourcemap: false, requireBlueprintName: true });
+      c();
+      done();
+    } }).parse;
+
+    fakeParse({ source, requireBlueprintName: true }, () => {});
   });
 });

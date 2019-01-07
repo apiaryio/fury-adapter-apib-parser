@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
 import { Namespace } from 'minim';
-import { validate } from '../src/adapter';
+import adapter from '../src/adapter';
+
+const { validate } = adapter();
 
 const minim = new Namespace();
 
