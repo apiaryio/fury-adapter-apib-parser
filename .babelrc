@@ -4,6 +4,5 @@
     "targets": {
       "node": "4"
     }
-  }]],
-  "plugins": ["transform-runtime"]
+  }]]
 }
